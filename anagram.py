@@ -69,4 +69,4 @@ if __name__ == "__main__":
         sys.exit(ERROR)
 
     OK = 0
-    sys.exit(0)
+    sys.exit(OK)
