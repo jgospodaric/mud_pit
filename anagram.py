@@ -19,8 +19,14 @@ def get_argument_parser():
         description="Count source word anagrams for target words in file."
     )
 
-    argument_parser.add_argument("path_to_file_with_target_words", type=str)
-    argument_parser.add_argument("source_word", type=str)
+    argument_parser.add_argument("path_to_file_with_target_words",
+                                 type=str,
+                                 help="""Path to file with target words
+                                         to check are source word anagram""")
+
+    argument_parser.add_argument("source_word",
+                                 type=str,
+                                 help="Anagram source word")
 
     return argument_parser
 
