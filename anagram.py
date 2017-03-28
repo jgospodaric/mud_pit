@@ -5,13 +5,46 @@ import sys
 import os
 
 
+class WordAnagramCounter(object):
+    def __init__(self, source_word):
+        self.source_word_chars_sorted = sorted(list(source_word))
+
+    def get_anagram_count_from_file(self, path_to_file_with_target_words):
+        with open(path_to_file_with_target_words, 'r') as \
+                file_with_target_words:
+
+            return self.get_anagram_count(file_with_target_words)
+
+    def get_anagram_count(self, target_words):
+        count_anagrams = 0
+        for word in target_words:
+            target_word = word.strip()
+
+            if self.is_anagram(target_word):
+                count_anagrams += 1
+
+        return count_anagrams
+
+    def is_anagram(self, target_word):
+        target_word_chars_sorted = sorted(list(target_word))
+
+        if target_word_chars_sorted == self.source_word_chars_sorted:
+            return True
+
+        return False
+
+
 def main():
     argument_parser = get_argument_parser()
 
     arguments = argument_parser.parse_args()
 
-    print(get_anagram_count_from_file(arguments.path_to_file_with_target_words,
-                                      arguments.source_word))
+    word_anagram_counter = WordAnagramCounter(arguments.source_word)
+
+    print(
+        word_anagram_counter.get_anagram_count_from_file(
+            arguments.path_to_file_with_target_words)
+    )
 
 
 def get_argument_parser():
@@ -29,34 +62,6 @@ def get_argument_parser():
                                  help="Anagram source word")
 
     return argument_parser
-
-
-def get_anagram_count_from_file(path_to_file_with_target_words, source_word):
-    with open(path_to_file_with_target_words, 'r') as \
-            file_with_target_words:
-
-        return get_anagram_count(file_with_target_words, source_word)
-
-
-def get_anagram_count(target_words, source_word):
-    count_anagrams = 0
-    for word in target_words:
-        target_word = word.strip()
-
-        if is_anagram(target_word, source_word):
-            count_anagrams += 1
-
-    return count_anagrams
-
-
-def is_anagram(target_word, source_word):
-    target_word_chars_sorted = sorted(list(target_word))
-    source_word_chars_sorted = sorted(list(source_word))
-
-    if target_word_chars_sorted == source_word_chars_sorted:
-        return True
-
-    return False
 
 
 if __name__ == "__main__":
