@@ -21,8 +21,8 @@ def get_argument_parser():
 
     argument_parser.add_argument("path_to_file_with_target_words",
                                  type=str,
-                                 help="""Path to file with target words
-                                         to check are source word anagram""")
+                                 help="Path to file with target words"
+                                      "to check are source word anagram")
 
     argument_parser.add_argument("source_word",
                                  type=str,
