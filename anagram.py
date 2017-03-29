@@ -32,7 +32,7 @@ def get_argument_parser():
 
 
 def get_anagram_count_from_file(path_to_file_with_target_words, source_word):
-    with open(path_to_file_with_target_words, 'r') as \
+    with open(path_to_file_with_target_words, "r") as \
             file_with_target_words:
 
         return get_anagram_count(file_with_target_words, source_word)
